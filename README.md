@@ -26,4 +26,4 @@ Exact file base for the container is located at myjar/angular-app/client/overvie
   - Tabs should be dynamically generated based on API response (See Back-end instructions).
 
 ### Thank you!
-In case you have any questions about the test task send an e-mail to janar.palk@myjar.com
+In case you have any questions about the test task send an e-mail to janar.palk@myjar.com# myjar-front-test-task 
