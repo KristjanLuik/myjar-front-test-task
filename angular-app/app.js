@@ -9,7 +9,8 @@ angular.module('myjar', [
 		'myjar.controllers',
 		'ngRoute',
 		'ngAnimate',
-		'angular-ladda'
+		'angular-ladda',
+	    'ui.bootstrap'
 	]).
 
 	constant("myjarConfig", {
@@ -25,13 +26,16 @@ angular.module('myjar', [
 	config(function($interpolateProvider, $routeProvider, $locationProvider, myjarConfig, laddaProvider) {
 		$interpolateProvider.startSymbol('[[');
 		$interpolateProvider.endSymbol(']]');
-
 		$routeProvider
 			.when('/:step', {
-				templateUrl : myjarConfig.partials + 'application/partials/index.html',
+				templateUrl : 'angular-app/client/overview/partials/index.html',//myjarConfig.partials + 'application/partials/index.html',
 				controller  : 'applicationController',
 				reloadOnSearch: false
-			});
+			})/*.when('/', {
+				templateUrl : 'myjar/angular-app/client/overview/partials/month2.html',
+/!*				controller  : 'applicationController',
+				reloadOnSearch: false*!/
+			})*/;
 
 
 		$locationProvider.html5Mode({

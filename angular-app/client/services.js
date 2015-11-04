@@ -11,7 +11,7 @@ angular.module('client.services', []).
 
 		return {
 			getInstalments: function(data) {
-				var json = JSON.parse('{"maximum_duration_date":"2015-08-07","instalments":[{"date":"2015-06-09","amount":"220.8","interest":"148.2","principal":"72.6","fee":"0"},{"date":"2015-07-09","amount":"250.48","interest":"96.57","principal":"153.91","fee":"0"},{"date":"2015-07-10","amount":"250.47","interest":"1.98","principal":"248.49","fee":"0"}]}');
+				var json = JSON.parse('{"maximum_duration_date":"2015-08-07","instalments":[{"date":"2015-06-09","amount":"225.8","interest":"148.2","principal":"72.6","fee":"0"},{"date":"2015-07-09","amount":"250.48","interest":"96.57","principal":"153.91","fee":"0"},{"date":"2015-07-10","amount":"250.47","interest":"1.98","principal":"248.49","fee":"0"}]}');
 				var deferred = $q.defer();
 				deferred.resolve(json);
 				return deferred.promise;
@@ -37,13 +37,20 @@ angular.module('client.services', []).
 		return {
 			getLoanRequestData: function() {
 
-				var promise = $http({
+/*				var promise = $http({
 					method: "post",
-					url: "api/v1/client/get_loan_request_data",
+					url: 'myjar/dmyAPI.php',//"api/v1/client/get_loan_request_data",
 					data: {csrf_token: config.csrf_token}
 				}).success(function (data) {
 					return data;
-				});
+				});*/
+                var promise = $http({
+                 method: "post",
+                 url: 'myjar/dmyAPI.php',
+                 data: {csrf_token: config.csrf_token}
+                 }).then(function(result){
+                   return result.data;
+                });
 
 				return promise;
 			},
@@ -67,4 +74,17 @@ angular.module('client.services', []).
 				});
 			}
 		}
-	}]);
+	}]).
+    //Should find a better way to do this. . . .
+    factory('colorFactory',[function(){
+            return{
+                getcolor: function(tab_name){
+                   var hardcodedcolors = [{tabname:'1month',color:'#9DD0EE'},{tabname:'2month',color:'#9FC998'},{tabname:'3month',color:'#B1B327'}];
+                    var color =_.find(hardcodedcolors,function(colorobject){
+                        return colorobject.tabname == tab_name;
+                    });
+                    return _.isUndefined(color) ? '#FD8C22' : color.color;
+
+                }
+            }
+        }]);

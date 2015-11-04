@@ -1,4 +1,6 @@
 <section class="sec-borrow vantage-request" ng-controller="ClientOverviewController" ng-if="loanDuration > 0">
+
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -9,24 +11,36 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="row">
 			<div class="col-md-12">
-				<div class="request-body">
-					<div class="row">
-						<div class="col-md-6">
-							<!-- Vantage request left body -->
-							<div ng-include src="'/myjar/angular-app/client/overview/sections/vantage/request/borrow_body.html'"></div>
-						</div>
-						<div class="col-md-6">
-							<div class="schedule-body">
-								<div class="schedule-container">
-									<h2>Payment schedule</h2>
-									<!-- Vantage request right body instalments -->
-									<div class="instalment-container" ng-include src="'/myjar/angular-app/client/overview/sections/vantage/request/instalment_container.html'"></div>
 
-									<div class="borrow-container text-center" style="text-align: center;">
-										<p>Borrow <strong>[[loanRequestInfo.principal | currency:"£"]]</strong> Interest <strong>[[loanRequestInfo.interest | currency:"£"]]</strong></p>
-										<p><strong>Total to repay: [[loanRequestInfo.total() | currency:"£"]]</strong></p>
+				<uib-tabset>
+					<uib-tab ng-repeat="tab in tabbs"
+							 heading="[[tab.name]][[tab.label]]"
+							 active="tab.active"
+							 select="change_product(tab.name)"
+							 class="tab"
+							 ng-style="{'background-color': tab.color}"
+							>
+						<div ng-style="{'background-color': tab.color}" class="request-body">
+							<div class="row">
+								<div class="col-md-6">
+									<!-- Vantage request left body -->
+									<div ng-include src="'/myjar/angular-app/client/overview/sections/vantage/request/borrow_body.html'"></div>
+								</div>
+								<div class="col-md-6">
+									<div class="schedule-body">
+										<div class="schedule-container">
+											<h2>Payment schedule</h2>
+											<!-- Vantage request right body instalments -->
+											<div class="instalment-container" ng-include src="'/myjar/angular-app/client/overview/sections/vantage/request/instalment_container.html'"></div>
+
+											<div class="borrow-container text-center" style="text-align: center;">
+												<p>Borrow <strong>[[loanRequestInfo.principal | currency:"£"]]</strong> Interest <strong>[[loanRequestInfo.interest | currency:"£"]]</strong></p>
+												<p><strong>Total to repay: [[loanRequestInfo.total() | currency:"£"]]</strong></p>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -34,6 +48,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+		</uib-tab>
+	</uib-tabset>
 </section>

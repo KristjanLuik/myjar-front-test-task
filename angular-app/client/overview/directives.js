@@ -20,9 +20,10 @@ angular.module('client.overview.directives', []).
 		].join('');
 
 		var daySlider = [
-			'<h2 class="large">[[sliderDayValue]] Days</h2>',
+			//<!--ng-if="product_options.day_slider" -->
+			'<h2 class="large">[[sliderDayValue]]<span ng-show="days"> Days</span></h2>',
 			'<p>Loan due date: <strong>[[earlierPaymentDate | instalmentDateFormat]]</strong></p>',
-			'<div class="slider-container">',
+			'<div ng-show="product_options.day_slider" class="slider-container">',
 				'<span class="decrease" ng-click="decreaseValue(1)">-</span><span class="increase" ng-click="increaseValue(1)">+</span>',
 				'<input type="range" min="1" max="[[loanDuration]]" value="" step="1">',
 				'<span class="pull-left minmax">1 Day</span>',

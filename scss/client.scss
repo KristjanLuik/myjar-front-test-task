@@ -1,3 +1,43 @@
+@mixin rounded($radius:0.5em){
+  -webkit-border-top-left-radius: $radius;
+  -webkit-border-top-right-radius: $radius;
+  -moz-border-radius-topleft: $radius;
+  -moz-border-radius-topright: $radius;
+  border-top-left-radius: $radius;
+  border-top-right-radius: $radius;
+}
+.nav-tabs>.active>a, .nav-tabs>.active>a:hover, .nav-tabs>.active>a:focus{
+  background-color: inherit;
+  border: none;
+}
+
+.nav{
+  margin-bottom: 0px;
+
+}
+
+.nav-tabs{
+  border-bottom: none;
+  margin-left: 7%;
+}
+ul {
+  //background-color: green;
+  margin: inherit;
+  padding: inherit;
+  .tab {
+    @include rounded(10px);
+    border: solid 4px white;
+    box-shadow: none;
+    margin-left: 0.25%;
+    padding-left: 15px;
+    padding-right: 15px;
+    a{
+      margin-right: 0px;
+
+    }
+  }
+}
+
 %slim-h2 {
 	font-size: 30px;
 	text-transform: uppercase;
@@ -49,6 +89,11 @@
 	.container {
 		padding-left: 45px;
 		padding-right: 45px;
+        width: 1300px;
+      .tabset {
+        color: red;
+      }
+
 	}
 	.request-header {
 		margin-bottom: 22px;
